@@ -271,6 +271,10 @@ osg::Image* computeMipmap( osg::Image* image, MipMapTuple attrs )
     {
         SG_LOG(SG_IO, SG_DEV_ALERT, "mipmapping: texture size not a power-of-two: " + image->getFileName());
     }
+    else if ( s <= 1 || t <= 1 ))
+    {
+        SG_LOG(SG_IO, SG_DEV_ALERT, "mipmapping: texture too small: " + image->getFileName());
+    }
     else if ( std::get<0>(attrs) != AUTOMATIC &&
         ( std::get<1>(attrs) != AUTOMATIC || nbComponents < 2 ) &&
         ( std::get<2>(attrs) != AUTOMATIC || nbComponents < 3 ) &&
